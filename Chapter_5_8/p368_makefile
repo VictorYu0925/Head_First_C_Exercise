@@ -1,0 +1,9 @@
+hfcal.o: hfcal.c
+	gcc -I/user/include -c hfcal.c -o hfcal.o
+elliptical.o: elliptical.c hfcal.o
+	gcc -I/user/include -c elliptical.c -o elliptical.o
+libhfcal.a: hfcal.o
+	ar -rcs /lib/libhfcal.a hfcal.o
+elliptical: libhfcal.a elliptical.o
+	gcc elliptical.o -L/lib -lhfcal -o elliptical
+
